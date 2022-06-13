@@ -39,6 +39,11 @@ const AuthController = (() => {
         console.log(user);
       });
     },
+    signUserUp: (email, password) => {
+      createUserWithEmailAndPassword(auth, email, password).then((user) =>
+        console.log(user)
+      );
+    },
   };
 })();
 
@@ -77,7 +82,14 @@ const App = ((AuthController, ItemsController, UIController) => {
         const userBio = document.querySelector(
           UIController.DOMItems.signupBio
         ).value;
-        console.log(userName, userEmail, userPassword, userBio);
+        if (
+          userName !== '' &&
+          userEmail !== '' &&
+          userPassword !== '' &&
+          userBio !== ''
+        ) {
+          AuthController.signUserUp(userEmail, userPassword);
+        }
       });
     },
   };
