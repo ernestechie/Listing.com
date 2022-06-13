@@ -1,5 +1,5 @@
 setInterval(() => {
-  if (window.innerWidth <= 600) {
+  if (window.innerWidth <= 768) {
     document.querySelector('#coming-soon').style.display = 'none';
     document.querySelector('#app').style.display = 'block';
   } else {

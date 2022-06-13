@@ -2,9 +2,42 @@
 
 .form-page {
   height: 100vh;
-  z-index: 5;
+  width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
-  background: $light-color;
+}
+
+p.h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.button {
+  display: block;
+  padding: 0.8rem 3rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.6s ease;
+
+  &-primary {
+    background: $accent-red;
+    color: $light-color;
+    font-family: $poppins;
+
+    &:hover {
+      background: #be2532;
+    }
+  }
+
+  &-secondary {
+    background: $normal-blue;
+    color: $light-color;
+    font-family: $poppins;
+
+    &:hover {
+      background: #285875;
+    }
+  }
 }

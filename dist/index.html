@@ -15,7 +15,7 @@
   </head>
   <body>
     <header id="coming-soon">
-      <h2>Tablet & Desktop mode unavailable. Please view on mobile.</h2>
+      <h2>Desktop mode unavailable. Please view on mobile.</h2>
     </header>
     <main id="app">
       <section id="main">
@@ -35,23 +35,103 @@
             </li>
           </ul>
         </nav>
+        <br />
         <h2 style="text-align: center">
-          <br />
-          <br />
-          Coming soon....
+          <a href="#" class="login">Login</a>
+        </h2>
+        <br />
+        <h2 style="text-align: center">
+          <a href="#" class="signup">Signup</a>
         </h2>
       </section>
 
-      <!-- LOGIN & SIGNUP FORMS -->
+      <!-- ? ////////// SIGNUP FORM ////////// -->
+
       <section class="form-page signup-page">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-          reprehenderit error consequatur vel fuga doloribus sapiente
-          praesentium. Repellat voluptatum blanditiis quam et temporibus nam a.
-          Accusantium error optio aliquid.
-        </p>
+        <div class="form">
+          <a href="#" class="close-page"
+            ><ion-icon name="close-sharp" class="close-icon"></ion-icon
+          ></a>
+          <div class="form-image">
+            <img
+              src="./images/svgs/signup-svg.svg"
+              alt="Illustration of people holding a key and trying to access data"
+            />
+          </div>
+          <div class="form-fields">
+            <p class="h1">Create a new account</p>
+            <div class="input-group">
+              <input type="text" placeholder="Full Name " class="singup-name" />
+              <ion-icon name="person-sharp"></ion-icon>
+            </div>
+            <div class="input-group">
+              <input type="email" placeholder="Email " class="signup-email" />
+              <ion-icon name="mail-sharp"></ion-icon>
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                placeholder="Password "
+                class="signup-password"
+              />
+              <ion-icon name="lock-closed-sharp"></ion-icon>
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                placeholder="A short bio "
+                class="signup-bio"
+              />
+              <ion-icon name="help-circle-sharp"></ion-icon>
+            </div>
+          </div>
+          <div class="form-links">
+            <button class="button button-primary signup-button">Sign up</button>
+            <p>
+              Already have an account?
+              <a href="#" class="bold goto-login">Login here</a>
+            </p>
+          </div>
+        </div>
       </section>
-      <section class="form-page login-page"></section>
+
+      <!-- ? ////////// LOGIN FORM ////////// -->
+
+      <section class="form-page login-page">
+        <div class="form">
+          <a href="#" class="close-page"
+            ><ion-icon name="close-sharp" class="close-icon"></ion-icon
+          ></a>
+          <div class="form-image">
+            <img
+              src="./images/svgs/login-svg.svg"
+              alt="Illustration of girl holding a phone in front of another phone"
+            />
+          </div>
+          <div class="form-fields">
+            <p class="h1">Login to your account</p>
+            <div class="input-group">
+              <input type="email" placeholder="Email " class="login-email" />
+              <ion-icon name="mail-sharp"></ion-icon>
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                placeholder="Password "
+                class="login-pwd"
+              />
+              <ion-icon name="lock-closed-sharp"></ion-icon>
+            </div>
+          </div>
+          <div class="form-links">
+            <button class="button button-secondary login-button">Login</button>
+            <p>
+              Don't have an account?
+              <a href="#" class="bold goto-signup">Signup here</a>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
     <script
       type="module"

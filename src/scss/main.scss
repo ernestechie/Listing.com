@@ -1,8 +1,10 @@
 @import './partials/resets';
 @import './partials/variables';
 @import './partials/utilities';
+@import './partials/form';
 @import './partials/views/login';
 @import './partials/views/signup';
+@import './partials/animations';
 
 #coming-soon {
   padding: 5rem;
@@ -36,6 +38,8 @@
   left: 0;
   bottom: 0;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  // z-index: 10;
+  background: #fff;
 
   #{&}-links {
     width: 80%;
