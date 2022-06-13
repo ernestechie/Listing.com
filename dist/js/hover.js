@@ -43,8 +43,6 @@ const signupLink = document.querySelector('.signup');
 
 const loginPage = document.querySelector('.login-page');
 const signupPage = document.querySelector('.signup-page');
-const gotoLogin = document.querySelector('.goto-login');
-const gotoSignup = document.querySelector('.goto-signup');
 
 // ? ACTIVATE LOGIN PAGE FROM HOME
 loginLink.addEventListener('click', (e) => {
@@ -73,3 +71,21 @@ signupLink.addEventListener('click', (e) => {
 });
 
 // ? ACTIVATE LOGIN PAGE FROM SIGNUP PAGE
+const gotoLogin = document.querySelector('.goto-login');
+const gotoSignup = document.querySelector('.goto-signup');
+
+gotoSignup.addEventListener('click', (e) => {
+  loginPage.classList.remove('slide-in-left');
+  loginPage.classList.add('slide-out-left');
+
+  signupPage.classList.remove('slide-out-right');
+  signupPage.classList.add('slide-in-right');
+});
+
+gotoLogin.addEventListener('click', (e) => {
+  loginPage.classList.add('slide-in-left');
+  loginPage.classList.remove('slide-out-left');
+
+  signupPage.classList.add('slide-out-right');
+  signupPage.classList.remove('slide-in-right');
+});
