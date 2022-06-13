@@ -1,13 +1,3 @@
-setInterval(() => {
-  if (window.innerWidth <= 768) {
-    document.querySelector('#coming-soon').style.display = 'none';
-    document.querySelector('#app').style.display = 'block';
-  } else {
-    document.querySelector('#coming-soon').style.display = 'block';
-    document.querySelector('#app').style.display = 'none';
-  }
-}, 100);
-
 // ? FIREBASE
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -36,3 +26,10 @@ const db = getFirestore(app);
 
 // Initialize Firebase Authentication
 const auth = getAuth(app);
+
+const AuthController = (() => {})();
+const ItemsController = (() => {})();
+const UIController = (() => {})();
+const AppController = ((AuthController, ItemsController, UIController) => {
+  console.log(AuthController);
+})(AuthController, ItemsController, UIController);
