@@ -48,26 +48,26 @@ const signupPage = document.querySelector('.signup-page');
 loginLink.addEventListener('click', (e) => {
   loginPage.classList.add('slide-in-left');
   loginPage.classList.remove('slide-out-left');
+});
 
-  window.addEventListener('click', (e) => {
-    if (e.target.classList.contains('close-icon')) {
-      loginPage.classList.add('slide-out-left');
-      loginPage.classList.remove('slide-in-left');
-    }
-  });
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('close-icon')) {
+    loginPage.classList.add('slide-out-left');
+    loginPage.classList.remove('slide-in-left');
+  }
 });
 
 // ? ACTIVATE SIGNUP PAGE FROM HOME
 signupLink.addEventListener('click', (e) => {
   signupPage.classList.add('slide-in-right');
   signupPage.classList.remove('slide-out-right');
+});
 
-  window.addEventListener('click', (e) => {
-    if (e.target.classList.contains('close-icon')) {
-      signupPage.classList.add('slide-out-right');
-      signupPage.classList.remove('slide-in-right');
-    }
-  });
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('close-icon')) {
+    signupPage.classList.add('slide-out-right');
+    signupPage.classList.remove('slide-in-right');
+  }
 });
 
 // ? ACTIVATE LOGIN PAGE FROM SIGNUP PAGE
