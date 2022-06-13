@@ -9,6 +9,7 @@ const personOutlineIcon = document.querySelector(
   'ion-icon[name="person-outline"'
 );
 
+homeOutlineIcon.setAttribute('name', 'home-sharp');
 homeOutlineIcon.addEventListener('click', (e) => {
   homeOutlineIcon.setAttribute('name', 'home-sharp');
   heartOutlineIcon.setAttribute('name', 'heart-outline');

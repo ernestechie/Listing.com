@@ -15,7 +15,7 @@
   \***********************/
 /***/ (() => {
 
-eval("window.addEventListener('mousemove', () => {\r\n  if (window.innerWidth < 600) {\r\n    document.querySelector('#coming-soon').style.display = 'none';\r\n    document.querySelector('#main').style.display = 'block';\r\n  } else {\r\n    document.querySelector('#coming-soon').style.display = 'block';\r\n    document.querySelector('#main').style.display = 'none';\r\n  }\r\n});\r\n\n\n//# sourceURL=webpack://Listings.io/./src/js/App.js?");
+eval("setInterval(() => {\r\n  if (window.innerWidth <= 600) {\r\n    document.querySelector('#coming-soon').style.display = 'none';\r\n    document.querySelector('#app').style.display = 'block';\r\n  } else {\r\n    document.querySelector('#coming-soon').style.display = 'block';\r\n    document.querySelector('#app').style.display = 'none';\r\n  }\r\n}, 100);\r\n\n\n//# sourceURL=webpack://Listings.io/./src/js/App.js?");
 
 /***/ })
 

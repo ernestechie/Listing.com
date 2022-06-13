@@ -1,0 +1,10 @@
+@import './variables';
+
+.form-page {
+  height: 100vh;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $light-color;
+}

@@ -1,5 +1,29 @@
 @import './partials/resets';
 @import './partials/variables';
+@import './partials/utilities';
+@import './partials/views/login';
+@import './partials/views/signup';
+
+#coming-soon {
+  padding: 5rem;
+  font-family: $lato;
+  text-align: center;
+  line-height: 1.5;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+  font-family: $poppins;
+}
+
+#main {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
 
 .nav {
   width: 100vw;
@@ -32,3 +56,5 @@
     }
   }
 }
+
+@import './partials/media_queries';
