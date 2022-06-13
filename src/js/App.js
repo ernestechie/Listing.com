@@ -1,6 +1,11 @@
 // ? FIREBASE
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
+import { getAnalytics } from 'firebase/analytics';
 import {
   getFirestore,
   collection,
@@ -27,9 +32,55 @@ const db = getFirestore(app);
 // Initialize Firebase Authentication
 const auth = getAuth(app);
 
-const AuthController = (() => {})();
+const AuthController = (() => {
+  return {
+    getUser: () => {
+      onAuthStateChanged(auth, (user) => {
+        console.log(user);
+      });
+    },
+  };
+})();
+
 const ItemsController = (() => {})();
-const UIController = (() => {})();
-const AppController = ((AuthController, ItemsController, UIController) => {
-  console.log(AuthController);
+const UIController = (() => {
+  const DOMItems = {
+    signupButton: '.signup-button',
+    loginButton: '.login-button',
+    signupName: '.signup-name',
+    signupEmail: '.signup-email',
+    signupPassword: '.signup-password',
+    signupBio: '.signup-bio',
+  };
+
+  return {
+    DOMItems,
+  };
+})();
+
+const App = ((AuthController, ItemsController, UIController) => {
+  return {
+    start: () => {
+      const signupButton = document.querySelector(
+        UIController.DOMItems.signupButton
+      );
+      signupButton.addEventListener('click', (e) => {
+        const userName = document.querySelector(
+          UIController.DOMItems.signupName
+        ).value;
+        const userEmail = document.querySelector(
+          UIController.DOMItems.signupEmail
+        ).value;
+        const userPassword = document.querySelector(
+          UIController.DOMItems.signupPassword
+        ).value;
+        const userBio = document.querySelector(
+          UIController.DOMItems.signupBio
+        ).value;
+        console.log(userName, userEmail, userPassword, userBio);
+      });
+    },
+  };
 })(AuthController, ItemsController, UIController);
+
+App.start();
