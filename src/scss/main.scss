@@ -6,6 +6,7 @@
 @import './partials/views/signup';
 @import './partials/animations';
 @import './partials/views/landing-page';
+@import './partials/views/profile';
 
 #coming-soon {
   padding: 5rem;
@@ -26,7 +27,7 @@
   height: 100%;
   width: 100%;
   position: relative;
-  display: none;
+  // display: none;
 }
 
 .nav {
@@ -61,6 +62,14 @@
       }
     }
   }
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
 }
 
 @import './partials/media_queries';

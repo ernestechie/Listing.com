@@ -1,0 +1,72 @@
+@import '../variables';
+
+#profile {
+  padding: 2rem;
+  .user {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &-image {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      border: 4px solid $normal-blue;
+      text-align: center;
+      background: url('/dist/images/stock-images/user-avatar.jpg') no-repeat
+        center center/cover;
+      margin-block: 0.5rem;
+    }
+
+    &-about {
+      text-align: center;
+
+      .user-bio {
+        padding: 0.5rem 5rem;
+      }
+    }
+
+    &-info {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-block: 1rem;
+
+      .input-group {
+        width: 100%;
+
+        p {
+          font-size: 0.8rem;
+        }
+
+        input {
+          padding: 0.5rem 1rem;
+          background: $pale-blue;
+          border: none;
+          color: $dark-blue;
+          margin-block: 0.5rem;
+        }
+      }
+
+      .logout-button {
+        width: 100%;
+
+        ion-icon {
+          color: $light-color;
+          padding: 0.6rem;
+          font-size: 1.5rem;
+          position: absolute;
+          left: 56%;
+        }
+      }
+
+      .date-joined {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
