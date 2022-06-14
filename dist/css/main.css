@@ -189,6 +189,12 @@ p.h1 {
     position: relative;
     z-index: 2;
     color: white; }
+  #landing-page .brand-name {
+    position: absolute;
+    top: 1rem;
+    left: 2rem; }
+    #landing-page .brand-name .primary {
+      color: #e63946; }
   #landing-page .landing-page-content {
     text-align: center;
     display: flex;

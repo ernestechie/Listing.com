@@ -25,6 +25,16 @@
     color: white;
   }
 
+  .brand-name {
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+
+    .primary {
+      color: $accent-red;
+    }
+  }
+
   .landing-page-content {
     text-align: center;
     display: flex;
