@@ -1,0 +1,27 @@
+@import '../variables';
+
+#landing-page {
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  background: $dark-blue;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background: url('/dist/images/stock-images/hero-image.jpg') center
+      center/cover no-repeat;
+  }
+
+  * {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+}

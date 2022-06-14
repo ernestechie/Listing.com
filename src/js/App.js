@@ -41,7 +41,7 @@ const AuthController = (() => {
     },
     signUserUp: (email, password) => {
       createUserWithEmailAndPassword(auth, email, password).then((user) =>
-        console.log(user)
+        console.log(user.email)
       );
     },
   };
