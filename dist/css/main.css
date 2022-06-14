@@ -219,6 +219,8 @@ p.h1 {
     #landing-page .landing-page-content .vector-arrow,
     #landing-page .landing-page-content .vector-underline {
       width: 90%; }
+    #landing-page .landing-page-content .vector-underline {
+      width: 70%; }
     #landing-page .landing-page-content .landing-page-buttons {
       width: 100%;
       display: flex;
