@@ -19,12 +19,26 @@ const personOutlineIcon = document.querySelector(
   'ion-icon[name="person-outline"'
 );
 
+const homePage = document.querySelector('#home');
+const favourites = document.querySelector('#favourites');
+const saved = document.querySelector('#saved');
+const profile = document.querySelector('#profile');
+
 homeOutlineIcon.setAttribute('name', 'home-sharp');
+homePage.style.zIndex = '5';
+favourites.style.zIndex = '0';
+saved.style.zIndex = '0';
+profile.style.zIndex = '0';
+
 homeOutlineIcon.addEventListener('click', (e) => {
   homeOutlineIcon.setAttribute('name', 'home-sharp');
   heartOutlineIcon.setAttribute('name', 'heart-outline');
   bookmarkOutlineIcon.setAttribute('name', 'bookmark-outline');
   personOutlineIcon.setAttribute('name', 'person-outline');
+  homePage.style.zIndex = '5';
+  favourites.style.zIndex = '0';
+  saved.style.zIndex = '0';
+  profile.style.zIndex = '0';
 });
 
 heartOutlineIcon.addEventListener('click', (e) => {
@@ -32,6 +46,10 @@ heartOutlineIcon.addEventListener('click', (e) => {
   homeOutlineIcon.setAttribute('name', 'home-outline');
   bookmarkOutlineIcon.setAttribute('name', 'bookmark-outline');
   personOutlineIcon.setAttribute('name', 'person-outline');
+  homePage.style.zIndex = '0';
+  favourites.style.zIndex = '5';
+  saved.style.zIndex = '0';
+  profile.style.zIndex = '0';
 });
 
 bookmarkOutlineIcon.addEventListener('click', (e) => {
@@ -39,6 +57,10 @@ bookmarkOutlineIcon.addEventListener('click', (e) => {
   homeOutlineIcon.setAttribute('name', 'home-outline');
   heartOutlineIcon.setAttribute('name', 'heart-outline');
   personOutlineIcon.setAttribute('name', 'person-outline');
+  homePage.style.zIndex = '0';
+  favourites.style.zIndex = '0';
+  saved.style.zIndex = '5';
+  profile.style.zIndex = '0';
 });
 
 personOutlineIcon.addEventListener('click', (e) => {
@@ -46,6 +68,10 @@ personOutlineIcon.addEventListener('click', (e) => {
   homeOutlineIcon.setAttribute('name', 'home-outline');
   heartOutlineIcon.setAttribute('name', 'heart-outline');
   bookmarkOutlineIcon.setAttribute('name', 'bookmark-outline');
+  homePage.style.zIndex = '0';
+  favourites.style.zIndex = '0';
+  saved.style.zIndex = '0';
+  profile.style.zIndex = '5';
 });
 
 const loginLink = document.querySelector('.login');

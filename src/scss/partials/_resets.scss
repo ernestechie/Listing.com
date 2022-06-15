@@ -6,11 +6,11 @@
   padding: 0;
 }
 
-body::-webkit-scrollbar {
+body:-webkit-scrollbar {
   width: 0.5rem;
 }
 
-body::-webkit-scrollbar-thumb {
+body:-webkit-scrollbar-thumb {
   background: $pale-blue;
   border-radius: 2rem;
   height: 1rem;

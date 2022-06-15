@@ -1,18 +1,10 @@
 // ? FIREBASE
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import { getAnalytics } from 'firebase/analytics';
-import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  getDocs,
-} from 'firebase/firestore';
+import { setDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, doc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAGXZbWML8bWjttNCUnObueuTtUF9wDDD0',
@@ -24,75 +16,142 @@ const firebaseConfig = {
   measurementId: 'G-CK9VY74N7Z',
 };
 
-// Initialize Firebase
+// ? Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-// Initialize Firebase Authentication
+// ? Initialize Firebase Authentication
 const auth = getAuth(app);
 
-const AuthController = (() => {
-  return {
-    getUser: () => {
-      onAuthStateChanged(auth, (user) => {
-        console.log(user);
-      });
-    },
-    signUserUp: (email, password) => {
-      createUserWithEmailAndPassword(auth, email, password).then((user) =>
-        console.log(user.email)
-      );
-    },
-  };
-})();
+// ? DOM ITEMS
+const DOMItems = {
+  signupButton: '.signup-button',
+  loginButton: '.login-button',
+  logoutButton: '.logout-button',
+  signupName: '.signup-name',
+  signupEmail: '.signup-email',
+  signupPassword: '.signup-password',
+  signupBio: '.signup-bio',
+  loginEmail: '.login-email',
+  loginPassword: '.login-pwd',
+  landingPage: '#landing-page',
+  mainApp: '#main',
+  home: '#home',
+  favourites: '#favourites',
+  saved: '#saved',
+  profile: '#profile',
+  modal: '.modal',
+  modalContent: '.modal-content',
+  modalConfirm: 'logout-confirm',
+  modalCancel: 'logout-cancel',
+};
 
-const ItemsController = (() => {})();
-const UIController = (() => {
-  const DOMItems = {
-    signupButton: '.signup-button',
-    loginButton: '.login-button',
-    signupName: '.signup-name',
-    signupEmail: '.signup-email',
-    signupPassword: '.signup-password',
-    signupBio: '.signup-bio',
-  };
+// ? Reacting to auth state changes of users
+onAuthStateChanged(auth, (user) => {
+  console.log(user);
+  const landingPage = document.querySelector(DOMItems.landingPage);
+  const mainApp = document.querySelector(DOMItems.mainApp);
+  const profilePage = document.querySelector(DOMItems.profile);
+  if (user !== null) {
+    landingPage.style.display = 'none';
+    mainApp.style.display = 'block';
+    profilePage.innerHTML = `
+    <p class="page-name">Profile</p>
+    <div class="user">
+      <div class="user-image"></div>
+      <div class="user-about">
+        <h2 class="user-name">John Doe</h2>
+        <p class="user-bio">Frontend Developer👨🏿‍💻 Handsome & Talented🥰</p>
+      </div>
+      <div class="user-info">
+        <div class="input-group">
+          <p>Email:</p>
+          <input
+          type="text"
+          value="${user.email}"
+          disabled/>
+      </div>
+        <div class="input-group">
+          <p>Username:</p>
+          <input
+          type="text"
+          value="JohnDoe87"
+          disabled/>
+      </div>
+        <div class="input-group">
+          <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
+          <p class="date-joined">
+            JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
+          </p>
+      </div>
+    </div>
+    `;
+    profilePage.style.display = 'block';
+  } else {
+    mainApp.style.display = 'none';
+    landingPage.style.display = 'block';
+    profilePage.innerHTML = '';
+    profilePage.style.display = 'none';
+  }
+});
 
-  return {
-    DOMItems,
-  };
-})();
+// ? SIGNUP FUNCTION
+const signupButton = document.querySelector(DOMItems.signupButton);
+signupButton.addEventListener('click', (e) => {
+  const name = document.querySelector(DOMItems.signupName).value;
+  const email = document.querySelector(DOMItems.signupEmail).value;
+  const password = document.querySelector(DOMItems.signupPassword).value;
+  const bio = document.querySelector(DOMItems.signupBio).value;
 
-const App = ((AuthController, ItemsController, UIController) => {
-  return {
-    start: () => {
-      const signupButton = document.querySelector(
-        UIController.DOMItems.signupButton
-      );
-      signupButton.addEventListener('click', (e) => {
-        const userName = document.querySelector(
-          UIController.DOMItems.signupName
-        ).value;
-        const userEmail = document.querySelector(
-          UIController.DOMItems.signupEmail
-        ).value;
-        const userPassword = document.querySelector(
-          UIController.DOMItems.signupPassword
-        ).value;
-        const userBio = document.querySelector(
-          UIController.DOMItems.signupBio
-        ).value;
-        if (
-          userName !== '' &&
-          userEmail !== '' &&
-          userPassword !== '' &&
-          userBio !== ''
-        ) {
-          AuthController.signUserUp(userEmail, userPassword);
-        }
-      });
-    },
-  };
-})(AuthController, ItemsController, UIController);
+  if (name !== '' && email !== '' && password !== '' && bio !== '') {
+    // ? Create user with email and password if login values are valid
+    createUserWithEmailAndPassword(auth, email, password).then((user) => {
+      // CLOSE SIGNUP FORM
+      signupPage.classList.add('slide-out-right');
+      signupPage.classList.remove('slide-in-right');
+    });
+  }
+});
 
-App.start();
+// ? LOGIN FUNCTION
+const loginButton = document.querySelector(DOMItems.loginButton);
+loginButton.addEventListener('click', (e) => {
+  const email = document.querySelector(DOMItems.loginEmail).value;
+  const password = document.querySelector(DOMItems.loginPassword).value;
+  if (email !== '' && password !== '') {
+    // ? Login user with email and password if login values are valid
+    signInWithEmailAndPassword(auth, email, password).then((user) => {
+      // CLOSE LOGIN FORM
+      loginPage.classList.add('slide-out-left');
+      loginPage.classList.remove('slide-in-left');
+    });
+  }
+});
+
+// ? LOGOUT FUNCTION
+const logoutButton = document.querySelector(DOMItems.logoutButton);
+window.addEventListener('click', (e) => {
+  if (e.target.classList.contains('logout-button')) {
+    const modal = document.querySelector(DOMItems.modal);
+    const modalContent = document.querySelector(DOMItems.modalContent);
+    modal.classList.add('modal-active');
+    modalContent.classList.add('modal-content-active');
+
+    window.addEventListener('click', (e) => {
+      console.log(e.target.classList);
+      if (
+        e.target.classList.contains('modal') ||
+        e.target.classList.contains('logout-cancel')
+      ) {
+        modal.classList.remove('modal-active');
+        modalContent.classList.remove('modal-content-active');
+      } else if (e.target.classList.contains('logout-confirm')) {
+        signOut(auth).then(() => {
+          console.log('Logged out');
+          modal.classList.remove('modal-active');
+          modalContent.classList.remove('modal-content-active');
+        });
+      }
+    });
+  }
+});
