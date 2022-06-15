@@ -263,8 +263,8 @@ p.h1 {
   width: 100%;
   height: 100%;
   opacity: 0.3;
-  background: url('/dist/images/stock-images/hero-image.jpg') center
-    center/cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80')
+    center center/cover no-repeat;
 }
 #landing-page * {
   position: relative;
