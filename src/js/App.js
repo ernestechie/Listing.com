@@ -53,6 +53,7 @@ onAuthStateChanged(auth, (user) => {
   const mainApp = document.querySelector(DOMItems.mainApp);
   const profilePage = document.querySelector(DOMItems.profile);
   if (user !== null) {
+    document.querySelector(DOMItems.home).style.zIndex = '5';
     landingPage.style.display = 'none';
     mainApp.style.display = 'block';
     profilePage.innerHTML = `
