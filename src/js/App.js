@@ -1,6 +1,6 @@
 // ? FIREBASE
 import { initializeApp } from 'firebase/app';
-import { setDoc, getDocs } from 'firebase/firestore';
+import { setDoc, getDocs, getDoc } from 'firebase/firestore';
 import { getFirestore, collection, doc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -29,6 +29,7 @@ const DOMItems = {
   loginButton: '.login-button',
   logoutButton: '.logout-button',
   signupName: '.signup-name',
+  signupUsername: '.signup-username',
   signupEmail: '.signup-email',
   signupPassword: '.signup-password',
   signupBio: '.signup-bio',
@@ -56,37 +57,42 @@ onAuthStateChanged(auth, (user) => {
     document.querySelector(DOMItems.home).style.zIndex = '5';
     landingPage.style.display = 'none';
     mainApp.style.display = 'block';
-    profilePage.innerHTML = `
-    <p class="page-name">Profile</p>
-    <div class="user">
-      <div class="user-image"></div>
-      <div class="user-about">
-        <h2 class="user-name">John Doe</h2>
-        <p class="user-bio">Frontend Developer👨🏿‍💻 Handsome & Talented🥰</p>
-      </div>
-      <div class="user-info">
-        <div class="input-group">
-          <p>Email:</p>
-          <input
-          type="text"
-          value="${user.email}"
-          disabled/>
-      </div>
-        <div class="input-group">
-          <p>Username:</p>
-          <input
-          type="text"
-          value="JohnDoe87"
-          disabled/>
-      </div>
-        <div class="input-group">
-          <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
-          <p class="date-joined">
-            JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
-          </p>
-      </div>
-    </div>
-    `;
+
+    getDoc(doc(collection(db, 'userInfo'), user.uid)).then((doc) => {
+      profilePage.innerHTML = `
+        <p class="page-name">Profile</p>
+        <div class="user">
+          <div class="user-image" style="background: url('${
+            doc.data().profilePic
+          }'); background-repeat: no-repeat; background-size: cover;background-position: center center;"></div>
+          <div class="user-about">
+            <h2 class="user-name">${doc.data().name}</h2>
+            <p class="user-bio">${doc.data().bio}</p>
+          </div>
+          <div class="user-info">
+            <div class="input-group">
+              <p>Email:</p>
+              <input
+              type="text"
+              value="${user.email}"
+              disabled/>
+          </div>
+            <div class="input-group">
+              <p>Username:</p>
+              <input
+              type="text"
+              value="${doc.data().username}"
+              disabled/>
+          </div>
+            <div class="input-group">
+              <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
+              <p class="date-joined">
+                JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
+              </p>
+          </div>
+        </div>
+        `;
+    });
     profilePage.style.display = 'block';
   } else {
     mainApp.style.display = 'none';
@@ -100,18 +106,31 @@ onAuthStateChanged(auth, (user) => {
 const signupButton = document.querySelector(DOMItems.signupButton);
 signupButton.addEventListener('click', (e) => {
   const name = document.querySelector(DOMItems.signupName).value;
+  const username = document.querySelector(DOMItems.signupUsername).value;
   const email = document.querySelector(DOMItems.signupEmail).value;
   const password = document.querySelector(DOMItems.signupPassword).value;
   const bio = document.querySelector(DOMItems.signupBio).value;
 
   if (name !== '' && email !== '' && password !== '' && bio !== '') {
     // ? Create user with email and password if login values are valid
-    createUserWithEmailAndPassword(auth, email, password).then((user) => {
-      // CLOSE SIGNUP FORM
-      signupPage.classList.add('slide-out-right');
-      signupPage.classList.remove('slide-in-right');
+    createUserWithEmailAndPassword(auth, email, password).then((credential) => {
+      // ? Create a Firebase collection of user information
+      return setDoc(doc(collection(db, 'userInfo'), credential.user.uid), {
+        name: name,
+        username: username,
+        email: email,
+        bio: bio,
+        profilePic: 'https://i.pravatar.cc',
+      })
+        .then(() => {
+          // ? Close signup form
+          signupPage.classList.add('slide-out-right');
+          signupPage.classList.remove('slide-in-right');
+        })
+        .catch((error) => console.log(error));
     });
   }
+  e.preventDefault();
 });
 
 // ? LOGIN FUNCTION
@@ -127,6 +146,7 @@ loginButton.addEventListener('click', (e) => {
       loginPage.classList.remove('slide-in-left');
     });
   }
+  e.preventDefault();
 });
 
 // ? LOGOUT FUNCTION
