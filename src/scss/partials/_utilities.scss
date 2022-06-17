@@ -22,6 +22,10 @@ p.bold {
   font-weight: bold;
 }
 
+p.info {
+  font-size: 0.85rem;
+}
+
 .button {
   display: block;
   padding: 0.8rem 3rem;
@@ -47,6 +51,70 @@ p.bold {
 
     &:hover {
       background: #285875;
+    }
+  }
+}
+
+.listing {
+  height: 11rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &-image {
+    width: 35%;
+    height: 100%;
+    background: red;
+    border-radius: 0.5rem;
+  }
+
+  ion-icon[name='heart'] {
+    font-size: 1.6rem;
+    color: $normal-blue;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+  ion-icon[name='add-circle-outline'] {
+    font-size: 1.6rem;
+    color: $normal-blue;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    --ionicon-stroke-width: 3rem;
+    cursor: pointer;
+  }
+
+  &-content {
+    height: 100%;
+    .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .body {
+      height: 65%;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .info,
+      .price-range {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        font-size: 0.9rem;
+      }
+
+      ion-icon {
+        margin-right: 0.3rem;
+      }
     }
   }
 }

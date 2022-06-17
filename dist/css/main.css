@@ -61,6 +61,10 @@ p.bold {
   font-weight: bold;
 }
 
+p.info {
+  font-size: 0.85rem;
+}
+
 .button {
   display: block;
   padding: 0.8rem 3rem;
@@ -84,6 +88,64 @@ p.bold {
 }
 .button-secondary:hover {
   background: #285875;
+}
+
+.listing {
+  height: 11rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.listing-image {
+  width: 35%;
+  height: 100%;
+  background: red;
+  border-radius: 0.5rem;
+}
+.listing ion-icon[name='heart'] {
+  font-size: 1.6rem;
+  color: #457b9d;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.listing ion-icon[name='add-circle-outline'] {
+  font-size: 1.6rem;
+  color: #457b9d;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  --ionicon-stroke-width: 3rem;
+  cursor: pointer;
+}
+.listing-content {
+  height: 100%;
+}
+.listing-content .title {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.listing-content .body {
+  height: 65%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.listing-content .body .info,
+.listing-content .body .price-range {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+.listing-content .body ion-icon {
+  margin-right: 0.3rem;
 }
 
 .form {
@@ -362,7 +424,8 @@ p.bold {
 #home {
   padding: 0;
 }
-#home .header {
+
+.header {
   padding: 1rem;
   height: 12rem;
   width: 100%;
@@ -373,25 +436,25 @@ p.bold {
   justify-content: space-between;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
-#home .header .user-info {
+.header .user-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-#home .header .user-info p .user-name {
+.header .user-info p .user-name {
   color: #457b9d;
 }
-#home .header .user-info .profile-pic {
+.header .user-info .profile-pic {
   border: 4px solid #457b9d;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
 }
-#home .header .search-bar {
+.header .search-bar {
   width: 100%;
   position: relative;
 }
-#home .header .search-bar input {
+.header .search-bar input {
   width: 100%;
   padding: 0.8rem 1rem;
   font-family: 'Poppins', sans-serif;
@@ -402,10 +465,10 @@ p.bold {
   opacity: 0.8;
   font-size: 1rem;
 }
-#home .header .search-bar input * {
+.header .search-bar input * {
   opacity: 1;
 }
-#home .header .search-bar ion-icon {
+.header .search-bar ion-icon {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -413,79 +476,38 @@ p.bold {
   font-size: 1.8rem;
   color: #457b9d;
 }
-#home .main {
+
+.main {
   padding: 0 1rem;
   margin: auto;
 }
-#home .main .available-listings {
+.main .available-listings {
   padding-block: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-#home .line {
+
+.line {
   height: 2px;
   background: #457b9d;
 }
-#home .listings-container {
+
+.listings-container {
   padding-block: 1rem;
 }
-#home .listings-container .listing {
-  height: 10rem;
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-#home .listings-container .listing ion-icon[name='heart'] {
-  font-size: 1.6rem;
-  color: #457b9d;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  cursor: pointer;
-}
-#home .listings-container .listing ion-icon[name='add-circle-outline'] {
-  font-size: 1.6rem;
-  color: #457b9d;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  --ionicon-stroke-width: 3rem;
-  cursor: pointer;
-}
-#home .listings-container .listing-image {
-  width: 40%;
+.listings-container .listing-image {
+  width: 35%;
   height: 100%;
   background: url('/dist/images/stock-images/aridolf-wellness.jpg') no-repeat
     center center/cover;
   border-radius: 0.5rem;
 }
-#home .listings-container .listing-content {
-  height: 100%;
-}
-#home .listings-container .listing-content .title {
+.listings-container .listing-content .title {
   margin-bottom: 0.8rem;
-  font-size: 1.2rem;
 }
-#home .listings-container .listing-content .body {
+.listings-container .listing-content .body {
   height: 70%;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-direction: column;
-}
-#home .listings-container .listing-content .body .info,
-#home .listings-container .listing-content .body .price-range {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-}
-#home .listings-container .listing-content .body ion-icon {
-  margin-right: 0.3rem;
 }
 
 #profile .user {
@@ -543,6 +565,55 @@ p.bold {
 }
 #profile .user-info .date-joined {
   margin-top: 1rem;
+}
+
+#favourites {
+  padding: 0;
+}
+#favourites .header {
+  height: 10rem;
+}
+#favourites .page-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+#favourites .page-info .profile-pic {
+  border: 4px solid #457b9d;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+#favourites .page-info .page-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+#favourites #goto-saved {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f9fdf8;
+}
+#favourites #goto-saved a {
+  color: #f9fdf8;
+}
+#favourites #goto-saved ion-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+#favourites .main .favourites-container {
+  padding: 1rem 0;
+}
+#favourites .main .favourites-container .listing {
+  height: 8rem;
+  position: relative;
+}
+#favourites .main .favourites-container .listing-content {
+  width: 70%;
 }
 
 #coming-soon {

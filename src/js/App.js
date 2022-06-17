@@ -53,8 +53,9 @@ onAuthStateChanged(auth, (user) => {
   console.log(user);
   const landingPage = document.querySelector(DOMItems.landingPage);
   const mainApp = document.querySelector(DOMItems.mainApp);
-  const profilePage = document.querySelector(DOMItems.profile);
   const homePage = document.querySelector(DOMItems.home);
+  const favouritesPage = document.querySelector(DOMItems.favourites);
+  const profilePage = document.querySelector(DOMItems.profile);
   if (user !== null) {
     document.querySelector(DOMItems.home).style.zIndex = '5';
     landingPage.style.display = 'none';
@@ -94,6 +95,7 @@ onAuthStateChanged(auth, (user) => {
           </div>
         </div>
         `;
+
       homePage.innerHTML = `
       <section class="header">
         <div class="user-info">
@@ -161,6 +163,72 @@ onAuthStateChanged(auth, (user) => {
                   N<span class="min-price">150</span>K - N<span
                     class="max-price"
                     >250</span>K/MONTH
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      `;
+      favouritesPage.innerHTML = `
+      <section class="header">
+        <div class="page-info">
+          <p class="page-name">Favourites</p>
+          <div
+            class="profile-pic"
+            style="
+              background: url('${doc.data().profilePic}');
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center center;
+            "
+          ></div>
+        </div>
+        <div id="goto-saved">
+          <a href="#" class="goto-link">
+            <p>Satisfied? Book a space now</p>
+          </a>
+          <ion-icon name="caret-forward-circle"></ion-icon>
+        </div>
+      </section>
+      <section class="main">
+        <div class="available-listings">
+          <p class="h2">Your Favourites</p>
+        </div>
+        <div class="line"></div>
+        <div class="favourites-container">
+          <div class="listing">
+            <ion-icon name="heart"></ion-icon>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <div
+              class="listing-image"
+              style="
+                background: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+              "
+            ></div>
+            <div class="listing-content">
+              <p class="bold title">Aridolf Wellness & Spa</p>
+              <div class="body">
+                <div class="description">
+                  <p class="size info">
+                    <ion-icon name="information-circle"></ion-icon>
+                    <span class="beds">2 </span> bed
+                  </p>
+                  <p class="guests info">
+                    <ion-icon name="people"></ion-icon>
+                    <span class="guest-number">3 </span>
+                    Guests Max
+                  </p>
+                </div>
+                <p class="price-range bold">
+                  <ion-icon name="wallet"></ion-icon>
+                  N<span class="min-price">150</span>K - N<span
+                    class="max-price"
+                    >250</span
+                  >K/MONTH
                 </p>
               </div>
             </div>
