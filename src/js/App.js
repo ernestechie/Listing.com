@@ -50,7 +50,10 @@ const DOMItems = {
 
 // ? Reacting to auth state changes of users
 onAuthStateChanged(auth, (user) => {
-  console.log(user);
+  // ? CLEAR LOADING INDICATORS FROM DOM
+  document.querySelector('.login-indicator').style.opacity = '0';
+  document.querySelector('.signup-indicator').style.opacity = '0';
+
   const landingPage = document.querySelector(DOMItems.landingPage);
   const mainApp = document.querySelector(DOMItems.mainApp);
   const homePage = document.querySelector(DOMItems.home);
@@ -249,6 +252,7 @@ onAuthStateChanged(auth, (user) => {
 // ? SIGNUP FUNCTION
 const signupButton = document.querySelector(DOMItems.signupButton);
 signupButton.addEventListener('click', (e) => {
+  document.querySelector('.signup-indicator').style.opacity = '1';
   const name = document.querySelector(DOMItems.signupName).value;
   const username = document.querySelector(DOMItems.signupUsername).value;
   const email = document.querySelector(DOMItems.signupEmail).value;
@@ -271,8 +275,22 @@ signupButton.addEventListener('click', (e) => {
           signupPage.classList.add('slide-out-right');
           signupPage.classList.remove('slide-in-right');
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          document.querySelector('.signup-error').innerHTML = `${error.code}`;
+          setTimeout(() => {
+            document.querySelector('.signup-error').innerHTML = ``;
+          }, 3000);
+          document.querySelector('.signup-indicator').style.opacity = '0';
+        });
     });
+  } else {
+    document.querySelector(
+      '.signup-error'
+    ).innerHTML = `Please fill all fields`;
+    setTimeout(() => {
+      document.querySelector('.signup-error').innerHTML = ``;
+    }, 3000);
+    document.querySelector('.signup-indicator').style.opacity = '0';
   }
   e.preventDefault();
 });
@@ -280,15 +298,30 @@ signupButton.addEventListener('click', (e) => {
 // ? LOGIN FUNCTION
 const loginButton = document.querySelector(DOMItems.loginButton);
 loginButton.addEventListener('click', (e) => {
+  document.querySelector('.login-indicator').style.opacity = '1';
   const email = document.querySelector(DOMItems.loginEmail).value;
   const password = document.querySelector(DOMItems.loginPassword).value;
   if (email !== '' && password !== '') {
     // ? Login user with email and password if login values are valid
-    signInWithEmailAndPassword(auth, email, password).then((user) => {
-      // CLOSE LOGIN FORM
-      loginPage.classList.add('slide-out-left');
-      loginPage.classList.remove('slide-in-left');
-    });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        // CLOSE LOGIN FORM
+        loginPage.classList.add('slide-out-left');
+        loginPage.classList.remove('slide-in-left');
+      })
+      .catch((error) => {
+        document.querySelector('.login-indicator').style.opacity = '0';
+        document.querySelector('.login-error').innerHTML = `${error.code}`;
+        setTimeout(() => {
+          document.querySelector('.login-error').innerHTML = ``;
+        }, 3000);
+      });
+  } else {
+    document.querySelector('.login-error').innerHTML = `Please fill all fields`;
+    setTimeout(() => {
+      document.querySelector('.login-error').innerHTML = ``;
+    }, 3000);
+    document.querySelector('.login-indicator').style.opacity = '0';
   }
   e.preventDefault();
 });
@@ -315,6 +348,8 @@ window.addEventListener('click', (e) => {
           console.log('Logged out');
           modal.classList.remove('modal-active');
           modalContent.classList.remove('modal-content-active');
+          document.querySelector('.login-indicator').style.opacity = '0';
+          document.querySelector('.signup-indicator').style.opacity = '0';
         });
       }
     });

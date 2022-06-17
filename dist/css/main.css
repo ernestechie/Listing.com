@@ -148,6 +148,30 @@ p.info {
   margin-right: 0.3rem;
 }
 
+.button {
+  position: relative;
+}
+
+.login-indicator,
+.signup-indicator {
+  mix-blend-mode: screen;
+  width: 10%;
+  position: absolute;
+  top: 10%;
+  left: 56%;
+  opacity: 0;
+}
+
+.login-error,
+.signup-error {
+  color: #e2001a;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0.25rem;
+  text-align: center;
+  margin: 0;
+}
+
 .form {
   width: 400px;
   display: flex;

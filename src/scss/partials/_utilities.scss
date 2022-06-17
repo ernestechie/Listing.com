@@ -118,3 +118,26 @@ p.info {
     }
   }
 }
+
+.button {
+  position: relative;
+}
+.login-indicator,
+.signup-indicator {
+  mix-blend-mode: screen;
+  width: 10%;
+  position: absolute;
+  top: 10%;
+  left: 56%;
+  opacity: 0;
+}
+
+.login-error,
+.signup-error {
+  color: rgb(226, 0, 26);
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0.25rem;
+  text-align: center;
+  margin: 0;
+}
