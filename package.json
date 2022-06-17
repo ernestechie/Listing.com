@@ -1,7 +1,7 @@
 {
   "name": "Listings.io",
   "version": "1.0.0",
-  "description": "Personal project. Apartment listing website, With firebase and SASS",
+  "description": "Apartment listing website, With firebase and SASS",
   "main": "webpack.config.js",
   "scripts": {
     "test": "",
