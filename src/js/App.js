@@ -263,10 +263,10 @@ signupButton.addEventListener('click', (e) => {
     document.querySelector(
       '.signup-error'
     ).innerHTML = `Please fill all fields`;
+    document.querySelector('.signup-indicator').style.opacity = '0';
     setTimeout(() => {
       document.querySelector('.signup-error').innerHTML = ``;
     }, 3000);
-    document.querySelector('.signup-indicator').style.opacity = '0';
   }
   e.preventDefault();
 });
