@@ -70,7 +70,6 @@ onAuthStateChanged(auth, (user) => {
     getDoc(doc(collection(db, 'userInfo'), user.uid)).then((doc) => {
       username.innerHTML = `${doc.data().name}`;
       document.querySelectorAll('.profile-pic').forEach((pic) => {
-        console.log(pic);
         pic.style.background = `url('${
           doc.data().profilePic
         }') no-repeat center center/cover`;
@@ -182,39 +181,24 @@ onAuthStateChanged(auth, (user) => {
       </section>
       `;
 
-      profilePage.innerHTML = `
-      <p class="page-name">Profile</p>
-      <div class="user">
-        <div class="user-image" style="background: url('${
-          doc.data().profilePic
-        }'); background-repeat: no-repeat; background-size: cover;background-position: center center;"></div>
-        <div class="user-about">
-          <h2 class="user-name">${doc.data().name}</h2>
-          <p class="user-bio">${doc.data().bio}</p>
-        </div>
-        <div class="user-info">
-          <div class="input-group">
-            <p>Email:</p>
-            <input
-            type="text"
-            value="${user.email}"
-            disabled/>
-        </div>
-          <div class="input-group">
-            <p>Username:</p>
-            <input
-            type="text"
-            value="${doc.data().username}"
-            disabled/>
-        </div>
-          <div class="input-group">
-            <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
-            <p class="date-joined">
-              JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
-            </p>
-        </div>
-      </div>
-      `;
+      // ? PROFILE PAGE
+      const profileImage = document.querySelector('#profile .user-image');
+      const profileName = document.querySelector('.user-about .user-name');
+      const profileBio = document.querySelector('.user-about .user-bio');
+      const profileEmail = document.querySelector(
+        '.user-info .input-group:nth-child(1) input'
+      );
+      const profileUsername = document.querySelector(
+        '.user-info .input-group:nth-child(2) input'
+      );
+      profileImage.style.background = `url('${
+        doc.data().profilePic
+      }') no-repeat center center/cover`;
+      profileName.innerHTML = `${doc.data().name}`;
+      profileBio.innerHTML = `${doc.data().bio}`;
+
+      profileEmail.setAttribute('value', `${user.email}`);
+      profileUsername.setAttribute('value', `${doc.data().username}`);
     });
     profilePage.style.display = 'block';
   } else {
