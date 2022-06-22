@@ -237,28 +237,28 @@ signupButton.addEventListener('click', (e) => {
 
   if (name !== '' && email !== '' && password !== '' && bio !== '') {
     // ? Create user with email and password if login values are valid
-    createUserWithEmailAndPassword(auth, email, password).then((credential) => {
-      // ? Create a Firebase collection of user information
-      return setDoc(doc(collection(db, 'userInfo'), credential.user.uid), {
-        name: name,
-        username: username,
-        email: email,
-        bio: bio,
-        profilePic: 'https://i.pravatar.cc/500?img=50',
-      })
-        .then(() => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((credential) => {
+        // ? Create a Firebase collection of user information
+        return setDoc(doc(collection(db, 'userInfo'), credential.user.uid), {
+          name: name,
+          username: username,
+          email: email,
+          bio: bio,
+          profilePic: 'https://i.pravatar.cc/500?img=50',
+        }).then(() => {
           // ? Close signup form
           signupPage.classList.add('slide-out-right');
           signupPage.classList.remove('slide-in-right');
-        })
-        .catch((error) => {
-          document.querySelector('.signup-error').innerHTML = `${error.code}`;
-          setTimeout(() => {
-            document.querySelector('.signup-error').innerHTML = ``;
-          }, 3000);
-          document.querySelector('.signup-indicator').style.opacity = '0';
         });
-    });
+      })
+      .catch((error) => {
+        document.querySelector('.signup-indicator').style.opacity = '0';
+        document.querySelector('.signup-error').innerHTML = `${error.code}`;
+        setTimeout(() => {
+          document.querySelector('.signup-error').innerHTML = ``;
+        }, 3000);
+      });
   } else {
     document.querySelector(
       '.signup-error'
