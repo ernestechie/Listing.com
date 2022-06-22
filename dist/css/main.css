@@ -759,8 +759,59 @@ p.info {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 460px) {
+  #home .header {
+    height: 10rem;
+  }
+  #home .header .user-info .h1 {
+    font-size: 1.2rem;
+  }
+  #home .header .user-info .profile-pic {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid #457b9d;
+  }
+  #home .header .search-bar input {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  #home .header .search-bar ion-icon {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+  }
   .nav .nav-links {
     width: 100%;
+  }
+  .listing {
+    height: 10rem;
+  }
+  .listing .title {
+    font-size: 1rem;
+  }
+  .listing .listing-content p.info {
+    font-size: 0.8rem;
+  }
+  .listing .listing-content .body .price-range {
+    font-size: 0.8rem;
+  }
+  .listing ion-icon[name='heart'],
+  .listing ion-icon[name='add-circle-outline'] {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .listing {
+    height: 8rem;
+  }
+  .listing .title {
+    font-size: 0.9rem;
+  }
+  .listing .listing-content p.info {
+    font-size: 0.7rem;
+  }
+  .listing ion-icon[name='heart'],
+  .listing ion-icon[name='add-circle-outline'] {
+    font-size: 1.2rem;
   }
 }

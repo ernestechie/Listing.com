@@ -46,6 +46,8 @@ const DOMItems = {
   modalConfirm: '.logout-confirm',
   modalCancel: '.logout-cancel',
   listingsContainer: '.listings-container',
+  userName: '.user-name',
+  userAvatar: '.profile-pic',
 };
 
 // ? Reacting to auth state changes of users
@@ -56,122 +58,62 @@ onAuthStateChanged(auth, (user) => {
 
   const landingPage = document.querySelector(DOMItems.landingPage);
   const mainApp = document.querySelector(DOMItems.mainApp);
-  const homePage = document.querySelector(DOMItems.home);
+  const listingsContainer = document.querySelector(DOMItems.listingsContainer);
   const favouritesPage = document.querySelector(DOMItems.favourites);
   const profilePage = document.querySelector(DOMItems.profile);
+  const username = document.querySelector(DOMItems.userName);
   if (user !== null) {
     document.querySelector(DOMItems.home).style.zIndex = '5';
     landingPage.style.display = 'none';
     mainApp.style.display = 'block';
 
     getDoc(doc(collection(db, 'userInfo'), user.uid)).then((doc) => {
-      profilePage.innerHTML = `
-        <p class="page-name">Profile</p>
-        <div class="user">
-          <div class="user-image" style="background: url('${
-            doc.data().profilePic
-          }'); background-repeat: no-repeat; background-size: cover;background-position: center center;"></div>
-          <div class="user-about">
-            <h2 class="user-name">${doc.data().name}</h2>
-            <p class="user-bio">${doc.data().bio}</p>
-          </div>
-          <div class="user-info">
-            <div class="input-group">
-              <p>Email:</p>
-              <input
-              type="text"
-              value="${user.email}"
-              disabled/>
-          </div>
-            <div class="input-group">
-              <p>Username:</p>
-              <input
-              type="text"
-              value="${doc.data().username}"
-              disabled/>
-          </div>
-            <div class="input-group">
-              <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
-              <p class="date-joined">
-                JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
-              </p>
-          </div>
-        </div>
-        `;
+      username.innerHTML = `${doc.data().name}`;
+      document.querySelectorAll('.profile-pic').forEach((pic) => {
+        console.log(pic);
+        pic.style.background = `url('${
+          doc.data().profilePic
+        }') no-repeat center center/cover`;
+      });
 
-      homePage.innerHTML = `
-      <section class="header">
-        <div class="user-info">
-          <p class="h1">
-            Welcome, <span class="user-name"><b>${doc.data().name}</b></span>
-          </p>
+      listingsContainer.innerHTML += `
+        <div class="listing">
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="add-circle-outline"></ion-icon>
           <div
-            class="profile-pic"
+            class="listing-image"
             style="
-              background: url('${doc.data().profilePic}');
+              background: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
               background-repeat: no-repeat;
               background-size: cover;
               background-position: center center;
-            "
-          ></div>
-        </div>
-        <p>Explore available listings</p>
-        <div class="search-bar">
-          <div class="search-bar">
-            <input
-              type="text"
-              placeholder="Search and find the right one for you"
-            />
-            <ion-icon name="search-outline"></ion-icon>
+            ">
           </div>
-        </div>
-      </section>
-      <section class="main">
-        <div class="available-listings">
-          <p class="h2">Available Listings</p>
-        </div>
-        <div class="line"></div>
-        <div class="listings-container">
-          <div class="listing">
-            <ion-icon name="heart"></ion-icon>
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <div
-              class="listing-image"
-              style="
-                background: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center center;
-              "
-            ></div>
-            <div class="listing-content">
-              <p class="bold title">Aridolf Wellness & Spa</p>
-              <div class="body">
-                <p class="description info">
-                  <ion-icon name="information-circle"></ion-icon>
-                  <span class="beds">2 </span> bed
-                  <span class="type">Hostel with team space</span>
-                </p>
-                <p class="info">
-                  <ion-icon name="location-sharp"></ion-icon>
-                  <span class="address"> Okaka Estate, Bayelsa State </span>
-                </p>
-                <p class="max-guests info">
-                  <ion-icon name="people"></ion-icon>
-                  <span class="guest-number">3 </span>
-                  Guests Max
-                </p>
-                <p class="price-range bold">
-                  <ion-icon name="wallet"></ion-icon>
-                  N<span class="min-price">150</span>K - N<span
-                    class="max-price"
-                    >250</span>K/MONTH
-                </p>
-              </div>
+          <div class="listing-content">
+            <p class="bold title">Aridolf Wellness & Spa</p>
+            <div class="body">
+              <p class="description info">
+                <ion-icon name="information-circle"></ion-icon>
+                <span class="beds">2 </span> bed
+                <span class="type">Hostel with team space</span>
+              </p>
+              <p class="info">
+                <ion-icon name="location-sharp"></ion-icon>
+                <span class="address"> Okaka Estate, Bayelsa State </span>
+              </p>
+              <p class="max-guests info">
+                <ion-icon name="people"></ion-icon>
+                <span class="guest-number">3 </span>
+                Guests Max
+              </p>
+              <p class="price-range bold">
+                <ion-icon name="wallet"></ion-icon>
+                N<span class="min-price">150</span>K - N<span
+                  class="max-price"
+                  >250</span>K/MONTH
+              </p>
             </div>
           </div>
-        </div>
-      </section>
       `;
       favouritesPage.innerHTML = `
       <section class="header">
@@ -238,6 +180,40 @@ onAuthStateChanged(auth, (user) => {
           </div>
         </div>
       </section>
+      `;
+
+      profilePage.innerHTML = `
+      <p class="page-name">Profile</p>
+      <div class="user">
+        <div class="user-image" style="background: url('${
+          doc.data().profilePic
+        }'); background-repeat: no-repeat; background-size: cover;background-position: center center;"></div>
+        <div class="user-about">
+          <h2 class="user-name">${doc.data().name}</h2>
+          <p class="user-bio">${doc.data().bio}</p>
+        </div>
+        <div class="user-info">
+          <div class="input-group">
+            <p>Email:</p>
+            <input
+            type="text"
+            value="${user.email}"
+            disabled/>
+        </div>
+          <div class="input-group">
+            <p>Username:</p>
+            <input
+            type="text"
+            value="${doc.data().username}"
+            disabled/>
+        </div>
+          <div class="input-group">
+            <button class="button button-primary logout-button">LOGOUT <ion-icon name="log-out-sharp"></ion-icon></button>
+            <p class="date-joined">
+              JOINED: <b class='day'>5</b>-<b class='month'>6</b>-<b class='year'>2022</b>
+            </p>
+        </div>
+      </div>
       `;
     });
     profilePage.style.display = 'block';

@@ -4,8 +4,75 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 460px) {
+  #home .header {
+    height: 10rem;
+
+    .user-info {
+      .h1 {
+        font-size: 1.2rem;
+      }
+      .profile-pic {
+        width: 3rem;
+        height: 3rem;
+        border: 3px solid $normal-blue;
+      }
+    }
+
+    .search-bar {
+      input {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      ion-icon {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
   .nav .nav-links {
     width: 100%;
+  }
+
+  .listing {
+    height: 10rem;
+
+    .title {
+      font-size: 1rem;
+    }
+
+    .listing-content {
+      p.info {
+        font-size: 0.8rem;
+      }
+      .body .price-range {
+        font-size: 0.8rem;
+      }
+    }
+
+    ion-icon[name='heart'],
+    ion-icon[name='add-circle-outline'] {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .listing {
+    height: 8rem;
+
+    .title {
+      font-size: 0.9rem;
+    }
+
+    .listing-content p.info {
+      font-size: 0.7rem;
+    }
+
+    ion-icon[name='heart'],
+    ion-icon[name='add-circle-outline'] {
+      font-size: 1.2rem;
+    }
   }
 }
