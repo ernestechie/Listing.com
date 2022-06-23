@@ -93,7 +93,37 @@
             <div class="listings-container"></div>
           </section>
         </section>
-        <section id="favourites" class="page"></section>
+        <!-- ? FAVOURITES PAGE -->
+        <section id="favourites" class="page">
+          <section class="header">
+        <div class="page-info">
+          <p class="page-name">Favourites</p>
+          <div
+            class="profile-pic"
+            style="
+              background: url('${doc.data().profilePic}');
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center center;
+            "
+          ></div>
+        </div>
+        <div id="goto-saved">
+          <a href="#" class="goto-link">
+            <p>Satisfied? Book a space now</p>
+          </a>
+          <ion-icon name="caret-forward-circle"></ion-icon>
+        </div>
+      </section>
+      <section class="main">
+        <div class="available-listings">
+          <p class="h2">Your Favourites</p>
+        </div>
+        <div class="line"></div>
+        <div class="favourites-container">
+        </div>
+      </section>
+        </section>
         <section id="saved" class="page">
           <p class="page-name">Saved</p>
         </section>

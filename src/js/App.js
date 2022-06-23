@@ -48,6 +48,7 @@ const DOMItems = {
   listingsContainer: '.listings-container',
   userName: '.user-name',
   userAvatar: '.profile-pic',
+  favouritesContainer: '.favourites-container',
 };
 
 // ? Reacting to auth state changes of users
@@ -59,7 +60,9 @@ onAuthStateChanged(auth, (user) => {
   const landingPage = document.querySelector(DOMItems.landingPage);
   const mainApp = document.querySelector(DOMItems.mainApp);
   const listingsContainer = document.querySelector(DOMItems.listingsContainer);
-  const favouritesPage = document.querySelector(DOMItems.favourites);
+  const favouritesContainer = document.querySelector(
+    DOMItems.favouritesContainer
+  );
   const profilePage = document.querySelector(DOMItems.profile);
   const username = document.querySelector(DOMItems.userName);
   if (user !== null) {
@@ -114,34 +117,9 @@ onAuthStateChanged(auth, (user) => {
             </div>
           </div>
       `;
-      favouritesPage.innerHTML = `
-      <section class="header">
-        <div class="page-info">
-          <p class="page-name">Favourites</p>
-          <div
-            class="profile-pic"
-            style="
-              background: url('${doc.data().profilePic}');
-              background-repeat: no-repeat;
-              background-size: cover;
-              background-position: center center;
-            "
-          ></div>
-        </div>
-        <div id="goto-saved">
-          <a href="#" class="goto-link">
-            <p>Satisfied? Book a space now</p>
-          </a>
-          <ion-icon name="caret-forward-circle"></ion-icon>
-        </div>
-      </section>
-      <section class="main">
-        <div class="available-listings">
-          <p class="h2">Your Favourites</p>
-        </div>
-        <div class="line"></div>
-        <div class="favourites-container">
-          <div class="listing">
+      // ? FAVOURITES CONTAINER
+      favouritesContainer.innerHTML += `
+        <div class="listing">
             <ion-icon name="heart"></ion-icon>
             <ion-icon name="add-circle-outline"></ion-icon>
             <div
@@ -178,7 +156,6 @@ onAuthStateChanged(auth, (user) => {
             </div>
           </div>
         </div>
-      </section>
       `;
 
       // ? PROFILE PAGE
